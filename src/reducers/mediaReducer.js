@@ -1,5 +1,5 @@
 export default function reducer(state={
-    media: [],
+    results: [],
     fetching: false,
     fetched: false,
     error: null,
@@ -17,10 +17,10 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          media: action.payload,
+          results: action.payload,
         }
       }
-      default: 
+      default:
     }
 
     return state

@@ -6,7 +6,9 @@ import { fetchMedia } from "./actions/mediaActions"
 
 @connect((store) => {
   return {
-    media: store.media
+    dbLastUpdated: store.dbLastUpdated,
+    query: store.query,
+    results: store.results
   };
 })
 
@@ -15,8 +17,8 @@ class App extends Component {
     this.props.dispatch(fetchMedia())
   }
   render() {
-    const { media } = this.props;
-    const mappedMedias = media.map(m => <li key={m.id}>{m.name}</li>)
+    const { results } = this.props;
+    const mappedMedias = results.map(m => <li key={m.id}>{m.name}</li>)
     return (
       <div className="App">
         <div className="App-header">
