@@ -1,5 +1,9 @@
 export default function reducer(state={
-    results: [],
+    results: {
+      query: { fromDate: "", toDate: "", types: ['Video', 'Photo']},
+      dbLastUpdated: undefined,
+      media: []
+    },
     fetching: false,
     fetched: false,
     error: null,

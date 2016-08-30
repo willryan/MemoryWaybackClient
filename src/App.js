@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { connect } from "react-redux"
 import { fetchMedia } from "./actions/mediaActions"
+import Results from './components/results';
+import DateRange from './components/date-range';
+import Filters from './components/filters';
 
 @connect((store) => {
   return {
-    dbLastUpdated: store.dbLastUpdated,
-    query: store.query,
-    results: store.results
+    dbLastUpdated: store.results.dbLastUpdated,
+    query: store.results.query,
+    media: store.results.media
   };
 })
 
@@ -17,18 +19,13 @@ class App extends Component {
     this.props.dispatch(fetchMedia())
   }
   render() {
-    const { results } = this.props;
-    const mappedMedias = results.map(m => <li key={m.id}>{m.name}</li>)
+    const { media, query, dbLastUpdated } = this.props;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <ul>{mappedMedias}</ul>
+        <div>Db last updated: {dbLastUpdated}</div>
+        <Filters filter={query.types}></Filters>
+        <DateRange from={query.fromDate} to={query.toDate}></DateRange>
+        <Results results={media}></Results>
       </div>
     );
   }
