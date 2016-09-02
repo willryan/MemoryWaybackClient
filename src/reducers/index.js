@@ -1,10 +1,11 @@
-//import { combineReducers } from "redux"
+import { combineReducers } from "redux"
 
-//import tweets from "./tweetsReducer"
-import media from "./mediaReducer"
+import results from "./resultsReducer"
+import fetching from "./fetchingReducer"
+import query from "./queryReducer"
 
-export default media
-// export default combineReducers({
-//  media
-//   // user,
-// })
+export default combineReducers({
+  fetching,
+  results,
+  query
+})

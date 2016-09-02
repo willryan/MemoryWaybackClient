@@ -9,14 +9,17 @@ import Filters from './components/filters'
 @connect((store) => {
   return {
     dbLastUpdated: store.results.dbLastUpdated,
-    query: store.results.query,
+    query: store.query,
     media: store.results.media
   };
 })
 
 class App extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchMedia())
+    this.search();
+  }
+  search() {
+    this.props.dispatch(fetchMedia(this.props.query));
   }
   onRangeChange(range) {
     this.props.dispatch(changeRange(range))
@@ -30,8 +33,8 @@ class App extends Component {
       <div className="App">
         <div>Db last updated: {dbLastUpdated}</div>
         <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
-        <DateRange from={query.fromDate} to={query.toDate}
-                   onChange={::this.onRangeChange}></DateRange>
+        <DateRange from={query.fromDate} to={query.toDate} onChange={::this.onRangeChange}></DateRange>
+        <button onClick={::this.search}>Search</button>
         <Results results={media}></Results>
       </div>
     );
