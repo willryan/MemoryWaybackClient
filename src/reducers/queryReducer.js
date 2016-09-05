@@ -1,5 +1,6 @@
 export default function reducer(state={
-    fromDate: "1/1/2015", toDate: "12/31/2016",
+    fromDate: "1/1/2015",
+    toDate: "12/31/2016",
     types: [
       {name: 'Video', include: true},
       {name: 'Photo', include: true}
