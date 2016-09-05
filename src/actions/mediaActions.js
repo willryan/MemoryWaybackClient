@@ -31,13 +31,21 @@ export function fetchMedia(query) {
   const media = allMedia.filter(m =>
     types.includes(m.type) && m.date >= fromDate && m.date <= toDate
   );
-  return {
-    type: "FETCH_MEDIA_FULFILLED",
-    payload: {
-      media,
-      query,
-      dbLastUpdated: '7/4/2016'
-    }
+  return dispatch => {
+    dispatch({
+      type: "FETCH_MEDIA",
+      payload: {}
+    })
+    window.setTimeout(() => {
+      dispatch({
+        type: "FETCH_MEDIA_FULFILLED",
+        payload: {
+          media,
+          query,
+          dbLastUpdated: '7/4/2016'
+        }
+      })
+    }, 1000)
   }
 }
 

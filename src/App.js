@@ -10,8 +10,9 @@ import Filters from './components/filters'
   return {
     dbLastUpdated: store.results.dbLastUpdated,
     query: store.query,
-    media: store.results.media
-  };
+    media: store.results.media,
+    fetching: store.fetching
+  }
 })
 
 class App extends Component {
@@ -28,14 +29,15 @@ class App extends Component {
      this.props.dispatch(toggleFilter(filterName))
   }
   render() {
-    const { media, query, dbLastUpdated } = this.props;
+    const { fetching, media, query, dbLastUpdated } = this.props;
+    const results = fetching.fetching ? <div>Fetching...</div> : <Results results={media}></Results>
     return (
       <div className="App">
         <div>Db last updated: {dbLastUpdated}</div>
         <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
         <DateRange from={query.fromDate} to={query.toDate} onChange={::this.onRangeChange}></DateRange>
         <button onClick={::this.search}>Search</button>
-        <Results results={media}></Results>
+        {results}
       </div>
     );
   }

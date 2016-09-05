@@ -7,8 +7,14 @@ export default class Results extends Component {
       <div>{m.name}, taken at {m.date.toDateString()}</div>
     </li>)
 
-    return (
-      <ul>{mappedMedias}</ul>
-    );
+    if (mappedMedias.length > 0) {
+      return (
+        <ul>{mappedMedias}</ul>
+      )
+    } else {
+      return (
+        <div>No results found.</div>
+      )
+    }
   }
 }
