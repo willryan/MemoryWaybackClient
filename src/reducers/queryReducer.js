@@ -1,5 +1,5 @@
 export default function reducer(state={
-    fromDate: "1/1/2015",
+    fromDate: "1/1/1981",
     toDate: "12/31/2016",
     types: [
       {name: 'Video', include: true},
