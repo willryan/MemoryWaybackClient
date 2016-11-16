@@ -178,6 +178,12 @@ function runDevServer(port) {
     // https://github.com/facebookincubator/create-react-app/issues/293
     watchOptions: {
       ignored: /node_modules/
+    },
+    proxy: {
+      "/api/**": {
+        target: "http://localhost:8083",
+        secure: false
+      }
     }
   }).listen(port, (err, result) => {
     if (err) {
