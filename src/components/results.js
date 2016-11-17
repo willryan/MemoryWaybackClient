@@ -6,29 +6,31 @@ export default class Results extends Component {
   }
   render() {
     const { results } = this.props
+    const buildPhoto = (p) => {
+      return (<li key={p}>
+        <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
+        <a href={p}>{p}</a>
+      </li>)
+    }
+    const buildVideo = (v) => {
+      return (<li key={v}>
+        <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
+        <span>
+          <a href={v}>{v}</a>
+        </span>
+      </li>)
+    }
     const mappedMedias = results.map(m => {
-      const link = `/assets/${m.name}`;
-      let content;
-      if (m.type === "Photo") {
-        content = (
-          <div>
-            <img src={link} alt={link} width="50" height="30" onClick={this.setSelectedMedia.bind(this,m)}></img>
-            <a href={link}>{m.name}</a>, taken at {m.date.toDateString()}
-          </div>
-        )
-      }
-      else {
-        content = (
-          <div>
-            <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,m)}></img>
-            <span>
-              <a href={link}>{m.name}</a>, taken at {m.date.toDateString()}
-            </span>
-          </div>
-        )
-      }
-      return (<li key={m.id}>{content}</li>);
-    });
+      const photos = m.photos.map(buildPhoto)
+      const videos = m.videos.map(buildVideo)
+      return (
+        <li key={m.date}> 
+          <div>Media taken on {m.date}</div>
+          <ul> {photos} </ul>
+          <ul> {videos} </ul>
+        </li>
+      )
+    })
 
     if (mappedMedias.length > 0) {
       return (
