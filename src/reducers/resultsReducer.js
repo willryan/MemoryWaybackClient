@@ -7,7 +7,7 @@ export default function reducer(state={
       ]
     },
     dbLastUpdated: undefined,
-    media: []
+    results: []
   }, action) {
 
     switch (action.type) {

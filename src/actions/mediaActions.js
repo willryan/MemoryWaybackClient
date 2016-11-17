@@ -10,10 +10,10 @@ export function fetchMedia(query) {
       payload: {}
     })
     axios.get("/api/media-query")
-      .then(payload => {
+      .then(resp => {
         dispatch({
           type: "FETCH_MEDIA_FULFILLED",
-          payload
+          payload: resp.data
         })
       });
   }

@@ -11,7 +11,7 @@ import MediaDisplay from './components/media-display'
   return {
     dbLastUpdated: store.results.dbLastUpdated,
     query: store.query,
-    media: store.results.media,
+    results: store.results.results,
     fetching: store.fetching,
     selectedMedia: store.selectedMedia.media
   }
@@ -34,10 +34,10 @@ class App extends Component {
     this.props.dispatch(act.setSelectedMedia(media))
   }
   render() {
-    const { fetching, media, query, dbLastUpdated } = this.props;
-    const results = fetching.fetching
+    const { fetching, results, query, dbLastUpdated } = this.props;
+    const content = fetching.fetching
       ? <div>Fetching...</div>
-      : <Results results={media} setSelectedMedia={::this.setSelectedMedia}></Results>
+      : <Results results={results} setSelectedMedia={::this.setSelectedMedia}></Results>
     return (
       <div className="App">
         <div>Db last updated: {dbLastUpdated}</div>
@@ -49,7 +49,7 @@ class App extends Component {
             <MediaDisplay media={this.props.selectedMedia}></MediaDisplay>
           </div>
           <div class="results-list">
-            {results}
+            {content}
           </div>
         </div>
       </div>
