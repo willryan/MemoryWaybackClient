@@ -1,6 +1,8 @@
+import moment from 'moment';
+
 export default function reducer(state={
-    fromDate: "1/1/1981",
-    toDate: "12/31/2016",
+    fromDate: moment().subtract(1, 'year').subtract(2, 'days'),
+    toDate: moment().subtract(1, 'year').add(2, 'days'),
     types: [
       {name: 'Video', include: true},
       {name: 'Photo', include: true}

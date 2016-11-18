@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
+import DatePicker from 'react-datepicker'
 
 export default class DateRange extends Component {
-  handleChangeFrom(e) {
-    const from = e.target.value;
+  handleChangeFrom(from) {
     this.props.onChange({from, to: this.props.to});
 
   }
-  handleChangeTo(e) {
-    const to = e.target.value;
+  handleChangeTo(to) {
     this.props.onChange({from: this.props.from, to});
   }
   render() {
     return (
       <div class="date-range">
-        <div>From:
-          <input value={this.props.from} onChange={::this.handleChangeFrom}></input>
+        <div class="picker">
+          <DatePicker
+            inline
+            showYearDropdown 
+            scrollableYearDropdown
+            selected={this.props.from}
+            selectsStart  startDate={this.props.from}
+            endDate={this.props.to}
+            onChange={::this.handleChangeFrom} />
         </div>
-        <div>To:
-          <input value={this.props.to} onChange={::this.handleChangeTo}></input>
+        <div class="picker">
+          <DatePicker
+            inline
+            showYearDropdown 
+            scrollableYearDropdown
+            selected={this.props.to}
+            selectsEnd  startDate={this.props.from}
+            endDate={this.props.to}
+            onChange={::this.handleChangeTo} />
         </div>
       </div>
     );

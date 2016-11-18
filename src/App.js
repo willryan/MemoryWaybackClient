@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import 'react-datepicker/dist/react-datepicker.css'
 import { connect } from "react-redux"
 import * as act from "./actions/mediaActions"
 import Results from './components/results'
