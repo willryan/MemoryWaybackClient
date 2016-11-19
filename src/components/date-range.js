@@ -2,35 +2,34 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 
 export default class DateRange extends Component {
-  handleChangeFrom(from) {
-    this.props.onChange({from, to: this.props.to});
-
+  componentWillMount() {
+    this.setState({range: this.props.range})
   }
-  handleChangeTo(to) {
-    this.props.onChange({from: this.props.from, to});
+  handleChangeDate(date) {
+    this.props.onChange({date, range: this.props.range});
+  }
+  handleChangeRange(e) {
+    let range = e.target.value;
+    this.setState({range});
+    range = parseInt(range);
+    if (!isNaN(range))
+    {
+      this.props.onChange({date: this.props.date, range});
+    }
   }
   render() {
     return (
       <div class="date-range">
-        <div class="picker">
-          <DatePicker
-            inline
-            showYearDropdown 
-            scrollableYearDropdown
-            selected={this.props.from}
-            selectsStart  startDate={this.props.from}
-            endDate={this.props.to}
-            onChange={::this.handleChangeFrom} />
-        </div>
-        <div class="picker">
-          <DatePicker
-            inline
-            showYearDropdown 
-            scrollableYearDropdown
-            selected={this.props.to}
-            selectsEnd  startDate={this.props.from}
-            endDate={this.props.to}
-            onChange={::this.handleChangeTo} />
+        <DatePicker
+          inline
+          showYearDropdown 
+          scrollableYearDropdown
+          selected={this.props.date}
+          onChange={::this.handleChangeDate} />
+        <div class="range">
+          within
+          <input value={this.state.range} onChange={::this.handleChangeRange}></input>
+          days
         </div>
       </div>
     );

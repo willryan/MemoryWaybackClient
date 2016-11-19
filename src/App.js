@@ -7,6 +7,7 @@ import Results from './components/results'
 import DateRange from './components/date-range'
 import Filters from './components/filters'
 import MediaDisplay from './components/media-display'
+import moment from 'moment'
 
 @connect((store) => {
   return {
@@ -26,7 +27,13 @@ class App extends Component {
     this.props.dispatch(act.fetchMedia(this.props.query));
   }
   onRangeChange(range) {
-    this.props.dispatch(act.changeRange(range))
+    let rangeValue = parseInt(range.range)
+    if (isNaN(rangeValue)) {
+      rangeValue = 0
+    }
+    const from = range.date.clone().subtract(range.range, 'days')
+    const to = range.date.clone().add(range.range, 'days')
+    this.props.dispatch(act.changeRange({from, to}))
   }
   onFilterChange(filterName) {
      this.props.dispatch(act.toggleFilter(filterName))
@@ -35,7 +42,9 @@ class App extends Component {
     this.props.dispatch(act.setSelectedMedia(media))
   }
   render() {
-    const { fetching, results, query, dbLastUpdated } = this.props;
+    const { fetching, results, query, dbLastUpdated } = this.props
+    const range = Math.round(moment.duration((query.toDate - query.fromDate) / 2.0).asDays())
+    const date = query.fromDate.clone().add(range, 'days')
     const content = fetching.fetching
       ? <div>Fetching...</div>
       : <Results results={results} setSelectedMedia={::this.setSelectedMedia}></Results>
@@ -43,7 +52,7 @@ class App extends Component {
       <div className="App">
         <div>Db last updated: {dbLastUpdated}</div>
         <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
-        <DateRange from={query.fromDate} to={query.toDate} onChange={::this.onRangeChange}></DateRange>
+        <DateRange date={date} range={range} onChange={::this.onRangeChange}></DateRange>
         <button onClick={::this.search}>Search</button>
         <div class="results">
           <div class="media-player">
@@ -54,7 +63,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
