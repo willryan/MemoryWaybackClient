@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 
+const fileNameOnly = function(fullPath) {
+  const parts = fullPath.split("/")
+  return parts[parts.length-1];
+}
+
 export default class Results extends Component {
   setSelectedMedia(media) {
     this.props.setSelectedMedia(media)
@@ -9,14 +14,14 @@ export default class Results extends Component {
     const buildPhoto = (p) => {
       return (<li key={p}>
         <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
-        <a href={p}>{p}</a>
+        <a href={p}>{fileNameOnly(p)}</a>
       </li>)
     }
     const buildVideo = (v) => {
       return (<li key={v}>
         <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
         <span>
-          <a href={v}>{v}</a>
+          <a href={v}>{fileNameOnly(v)}</a>
         </span>
       </li>)
     }
