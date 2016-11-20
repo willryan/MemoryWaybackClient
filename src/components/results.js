@@ -13,16 +13,20 @@ export default class Results extends Component {
     const { results } = this.props
     const buildPhoto = (p) => {
       return (<li key={p}>
-        <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
-        <a href={p}>{fileNameOnly(p)}</a>
+        <div>
+          <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
+          <a href={p}>{fileNameOnly(p)}</a>
+        </div>
       </li>)
     }
     const buildVideo = (v) => {
       return (<li key={v}>
-        <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
-        <span>
-          <a href={v}>{fileNameOnly(v)}</a>
-        </span>
+        <div>
+          <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
+          <span>
+            <a href={v}>{fileNameOnly(v)}</a>
+          </span>
+        </div>
       </li>)
     }
     const mappedMedias = results.map(m => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import './App.css'
+import './css/bootstrap.css'
+import './css/bootstrap-theme.css'
+import './css/App.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import { connect } from "react-redux"
 import * as act from "./actions/mediaActions"
@@ -50,18 +52,23 @@ class App extends Component {
       : <Results results={results} setSelectedMedia={::this.setSelectedMedia}></Results>
     return (
       <div className="App">
-        <div>Db last updated: {dbLastUpdated}</div>
-        <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
-        <DateRange date={date} range={range} onChange={::this.onRangeChange}></DateRange>
-        <button onClick={::this.search}>Search</button>
-        <div class="results">
-          <div class="media-player">
-            <MediaDisplay media={this.props.selectedMedia}></MediaDisplay>
-          </div>
-          <div class="results-list">
-            {content}
-          </div>
-        </div>
+        <table>
+          <tr>
+            <td class="search-and-selected">
+              <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
+              <DateRange date={date} range={range} onChange={::this.onRangeChange}></DateRange>
+              <button onClick={::this.search}>Search</button>
+              <div class="media-player">
+                <MediaDisplay media={this.props.selectedMedia}></MediaDisplay>
+              </div>
+            </td>
+            <td class="results">
+              <div class="results-list">
+                {content}
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
     )
   }
