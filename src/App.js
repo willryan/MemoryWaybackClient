@@ -27,7 +27,7 @@ class App extends Component {
     this.props.dispatch(act.fetchMedia(this.props.query));
   }
   onRangeChange(range) {
-    let rangeValue = parseInt(range.range)
+    let rangeValue = parseInt(range.range,10)
     if (isNaN(rangeValue)) {
       rangeValue = 0
     }
