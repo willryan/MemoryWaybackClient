@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -22,16 +21,41 @@
   display: inline;
 }
 
+ul {
+  padding-left: 10px;
+}
+
+img {
+  margin: 5px;
+}
+
 li {
   list-style: none;
+  margin: 5px;
+}
+
+input[type='checkbox'] {
+  margin: 4px;
+}
+
+.range input {
+  width: 40px;
 }
 
 .search-and-selected {
+  padding: 10px;
   width: 510px;
+  vertical-align: top;
 }
 
 .results {
+  padding: 10px;
   vertical-align: top;
+}
+
+.results > div {
+  height: 700px;
+  overflow-y: scroll;
 }
 
 @keyframes App-logo-spin {
