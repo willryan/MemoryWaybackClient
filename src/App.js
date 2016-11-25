@@ -55,9 +55,11 @@ class App extends Component {
         <table>
           <tr>
             <td class="search-and-selected">
-              <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
-              <DateRange date={date} range={range} onChange={::this.onRangeChange}></DateRange>
-              <button onClick={::this.search}>Search</button>
+              <div class='search'>
+                <DateRange date={date} range={range} onChange={::this.onRangeChange}></DateRange>
+                <Filters filter={query.types} onChange={::this.onFilterChange}></Filters>
+                <button onClick={::this.search}>Search</button>
+              </div>
               <div class="media-player">
                 <MediaDisplay media={this.props.selectedMedia}></MediaDisplay>
               </div>

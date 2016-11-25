@@ -12,7 +12,7 @@ export default class Results extends Component {
   render() {
     const { results } = this.props
     const buildPhoto = (p) => {
-      return (<li key={p}>
+      return (<li class='date-collection__item' key={p}>
         <div>
           <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
           <a href={p}>{fileNameOnly(p)}</a>
@@ -20,7 +20,7 @@ export default class Results extends Component {
       </li>)
     }
     const buildVideo = (v) => {
-      return (<li key={v}>
+      return (<li class='date-collection__item' key={v}>
         <div>
           <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
           <span>
@@ -33,7 +33,7 @@ export default class Results extends Component {
       const photos = m.photos.map(buildPhoto)
       const videos = m.videos.map(buildVideo)
       return (
-        <li key={m.date}> 
+        <li class='date-collection' key={m.date}> 
           <div>Media taken on {m.date}</div>
           <ul> {photos} </ul>
           <ul> {videos} </ul>

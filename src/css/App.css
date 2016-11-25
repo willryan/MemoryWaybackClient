@@ -38,6 +38,16 @@ input[type='checkbox'] {
   margin: 4px;
 }
 
+.date-collection, .media-player {
+  padding: 8px;
+  border: 1px solid black;
+}
+
+.search > * {
+  display: inline-block;
+  margin: 8px;
+}
+
 .range input {
   width: 40px;
 }
