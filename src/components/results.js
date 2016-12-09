@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const fileNameOnly = function(fullPath) {
   const parts = fullPath.split("/")
-  return parts[parts.length-1];
+  return decodeURIComponent(parts[parts.length-1]);
 }
 
 export default class Results extends Component {
@@ -12,17 +12,19 @@ export default class Results extends Component {
   render() {
     const { results } = this.props
     const buildPhoto = (p) => {
+      const media = { link: p, type: "Photo" };
       return (<li class='date-collection__item' key={p}>
         <div>
-          <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,p)}></img>
+          <img src={p} alt={p} width="50" height="30" onClick={this.setSelectedMedia.bind(this,media)}></img>
           <a href={p}>{fileNameOnly(p)}</a>
         </div>
       </li>)
     }
     const buildVideo = (v) => {
+      const media = { link: v, type: "Video" };
       return (<li class='date-collection__item' key={v}>
         <div>
-          <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,v)}></img>
+          <img src="/assets/video.jpg" alt="video" width="50" height="30" onClick={this.setSelectedMedia.bind(this,media)}></img>
           <span>
             <a href={v}>{fileNameOnly(v)}</a>
           </span>

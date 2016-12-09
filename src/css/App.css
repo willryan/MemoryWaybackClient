@@ -65,7 +65,7 @@ input[type='checkbox'] {
 
 .results > div {
   height: 700px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 @keyframes App-logo-spin {

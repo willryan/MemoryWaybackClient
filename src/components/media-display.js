@@ -6,7 +6,7 @@ export default class MediaDisplay extends Component {
   render() {
     const { media } = this.props
     if (!!media) {
-      const link = media
+      const link = media.link
       const content = (media.type === "Video")
         ? (
           <VideoPlayer source={link}></VideoPlayer>

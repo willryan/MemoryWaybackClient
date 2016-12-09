@@ -5,7 +5,7 @@ export default class VideoPlayer extends Component {
     const { source } = this.props
 
     return (
-      <video width="500" height="375" controls autoplay src={source} type="video/mp4"></video>
+      <video width="500" height="375" controls autoPlay src={source} type="video/mp4"></video>
     )
   }
 }
