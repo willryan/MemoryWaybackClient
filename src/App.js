@@ -38,7 +38,7 @@ class App extends Component {
     this.props.dispatch(act.changeRange({from, to}))
   }
   onFilterChange(filterName) {
-     this.props.dispatch(act.toggleFilter(filterName))
+    this.props.dispatch(act.toggleFilter(filterName))
   }
   setSelectedMedia(media) {
     this.props.dispatch(act.setSelectedMedia(media))
